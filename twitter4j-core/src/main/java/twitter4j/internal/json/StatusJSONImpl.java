@@ -38,6 +38,8 @@ import static twitter4j.internal.json.z_T4JInternalParseUtil.*;
     private static final Logger logger = Logger.getLogger(StatusJSONImpl.class);
     private static final long serialVersionUID = 7548618898682727465L;
 
+    private String rawJSON;
+
     private Date createdAt;
     private long id;
     private String text;
@@ -91,6 +93,7 @@ import static twitter4j.internal.json.z_T4JInternalParseUtil.*;
     }
 
     private void init(JSONObject json) throws TwitterException {
+        this.rawJSON = json.toString();
         id = getLong("id", json);
         source = getUnescapedString("source", json);
         createdAt = getDate("created_at", json);
@@ -385,6 +388,11 @@ import static twitter4j.internal.json.z_T4JInternalParseUtil.*;
      */
     public String getIsoLanguageCode() {
         return isoLanguageCode;
+    }
+
+    @Override
+    public String getRawJSON() {
+        return rawJSON;
     }
 
     /*package*/

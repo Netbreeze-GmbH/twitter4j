@@ -176,4 +176,12 @@ public interface Status extends Comparable<Status>, TwitterResponse,
      * @return two-letter iso language code
      */
     String getIsoLanguageCode();
+
+    /**
+     * Returns the raw JSON. May not be 100% identical to the original JSON received from the Twitter API,
+     * as it is stored as a {@link twitter4j.internal.org.json.JSONObject} and then converted to a String again.
+     * @return complete JSON as String, without white-space
+     */
+    public String getRawJSON();
+
 }
